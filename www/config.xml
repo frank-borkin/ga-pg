@@ -31,32 +31,32 @@
     <gap:plugin name="org.apache.cordova.inappbrowser" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     
-    <icon src="www/icon.png" />
-    <icon gap:platform="android" gap:qualifier="ldpi" density="ldpi" src="www/icon.png" />
-    <icon gap:platform="android" gap:qualifier="mdpi" density="mdpi" src="www/icon.png" />
-    <icon gap:platform="android" gap:qualifier="hdpi" density="hdpi" src="www/icon.png" />
-    <icon gap:platform="android" gap:qualifier="xhdpi" density="xhdpi" src="www/icon.png" />
-    <icon gap:platform="blackberry" src="www/icon.png" />
-    <icon gap:platform="blackberry" gap:state="hover" src="www/icon.png" />
-    <icon gap:platform="ios" height="57" src="www/icon.png" width="57" />
-    <icon gap:platform="ios" height="72" src="www/icon.png" width="72" />
-    <icon gap:platform="ios" height="114" src="www/icon.png" width="114" />
-    <icon gap:platform="ios" height="144" src="www/icon.png" width="144" />
-    <icon gap:platform="webos" src="www/icon.png" />
-    <icon gap:platform="winphone" src="www/icon.png" />
-    <icon gap:platform="winphone" gap:role="background" src="www/icon.png" />
+    <icon src="icon.png" />
+    <icon gap:platform="android" gap:qualifier="ldpi" density="ldpi" src="icon.png" />
+    <icon gap:platform="android" gap:qualifier="mdpi" density="mdpi" src="icon.png" />
+    <icon gap:platform="android" gap:qualifier="hdpi" density="hdpi" src="icon.png" />
+    <icon gap:platform="android" gap:qualifier="xhdpi" density="xhdpi" src="icon.png" />
+    <icon gap:platform="blackberry" src="icon.png" />
+    <icon gap:platform="blackberry" gap:state="hover" src="icon.png" />
+    <icon gap:platform="ios" height="57" src="icon.png" width="57" />
+    <icon gap:platform="ios" height="72" src="icon.png" width="72" />
+    <icon gap:platform="ios" height="114" src="icon.png" width="114" />
+    <icon gap:platform="ios" height="144" src="icon.png" width="144" />
+    <icon gap:platform="webos" src="icon.png" />
+    <icon gap:platform="winphone" src="icon.png" />
+    <icon gap:platform="winphone" gap:role="background" src="icon.png" />
     
-    <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="www/res/screen/android/screen-ldpi-portrait.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="www/res/screen/android/screen-mdpi-portrait.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="www/res/screen/android/screen-hdpi-portrait.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="www/res/screen/android/screen-xhdpi-portrait.png" />
-    <gap:splash gap:platform="blackberry" src="www/res/screen/blackberry/screen-225.png" />
-    <gap:splash gap:platform="ios" height="480" src="www/res/screen/ios/screen-iphone-portrait.png" width="320" />
-    <gap:splash gap:platform="ios" height="960" src="www/res/screen/ios/screen-iphone-portrait-2x.png" width="640" />
-    <gap:splash gap:platform="ios" height="1136" src="www/res/screen/ios/screen-iphone-portrait-568h-2x.png" width="640" />
-    <gap:splash gap:platform="ios" height="1024" src="www/res/screen/ios/screen-ipad-portrait.png" width="768" />
-    <gap:splash gap:platform="ios" height="768" src="www/res/screen/ios/screen-ipad-landscape.png" width="1024" />
-    <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
+    <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
+    <gap:splash gap:platform="blackberry" src="res/screen/blackberry/screen-225.png" />
+    <gap:splash gap:platform="ios" height="480" src="res/screen/ios/screen-iphone-portrait.png" width="320" />
+    <gap:splash gap:platform="ios" height="960" src="res/screen/ios/screen-iphone-portrait-2x.png" width="640" />
+    <gap:splash gap:platform="ios" height="1136" src="res/screen/ios/screen-iphone-portrait-568h-2x.png" width="640" />
+    <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
+    <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
+    <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
