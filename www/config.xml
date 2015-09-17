@@ -27,9 +27,9 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="10000" />
     
-    <gap:plugin name="org.apache.cordova.geolocation" />
+    <gap:plugin name="cordova-plugin-geolocation" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
-    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <gap:plugin name="cordova-plugin-splashscreen" />
     
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" density="ldpi" src="icon.png" />
