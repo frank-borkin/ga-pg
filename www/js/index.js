@@ -59,6 +59,8 @@ var app = {
         app.receivedEvent('deviceready');
 
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        
+        
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -70,5 +72,7 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+        var div = document.getElementById("map_canvas");
+        map = plugin.google.maps.Map.getMap(div);
     }
 };
