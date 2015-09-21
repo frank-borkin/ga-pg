@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="xyz.giveanywhere" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="xyz.giveanywhere.mobile" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Give Anywhere</name>
     <description>
         Give Anywhere makes it easy to find local places where you can donate to charities, schools, orphanages and other good causes.
@@ -25,9 +25,9 @@
     <preference name="android-installLocation" value="auto" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="10000" />
-    <gap:plugin name="org.apache.cordova.geolocation" />
-    <gap:plugin name="org.apache.cordova.inappbrowser" />
-    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <gap:plugin name="org.apache.cordova.geolocation" version="0.3.10" />
+    <gap:plugin name="org.apache.cordova.splashscreen" version="0.3.4" />
+    <gap:plugin name="plugin.google.maps" />
     <icon src="icon.png" />
     <icon density="ldpi" gap:platform="android" gap:qualifier="ldpi" src="icon.png" />
     <icon density="mdpi" gap:platform="android" gap:qualifier="mdpi" src="icon.png" />
