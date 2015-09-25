@@ -14,25 +14,32 @@
                 var div = document.getElementById("map_canvas");
 
                 // Initialize the map view
-                map = plugin.google.maps.Map.getMap(div);
+                map = plugin.google.maps.Map.getMap(div, {
+                    'camera': {
+                        'latLng': {
+                            lat: 50.470021,
+                            lng: 30.632001
+                        },
+                        'zoom': 17
+                    }
+                });
 
                 // Wait until the map is ready status.
-                map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+                map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+                    //Nothing
+                    map.addMarker({
+                        'position': {
+                            lat: 50.470021,
+                            lng: 30.632001
+                        },
+                        'title': "Hello GoogleMap for Cordova!"
+                    });
+                });
             }, false);
-
-            function onMapReady() {
-                var button = document.getElementById("button");
-                button.addEventListener("click", onBtnClicked, false);
-            }
-
-            function onBtnClicked() {
-                map.showDialog();
-            }
         </script>
     </head>
     <body>
-        <h3>Give Anywhere</h3>
-        <button id="button">Full Screen</button>
+        <div><img src="img/give-anywhere.png" width="100%"></div>
         <div style="width:100%;height:400px" id="map_canvas"></div>
     </body>
 </html>

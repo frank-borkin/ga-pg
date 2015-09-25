@@ -25,8 +25,8 @@
     <preference name="android-installLocation" value="auto" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="5000" />
-    <gap:plugin name="org.apache.cordova.geolocation" />
-    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <gap:plugin name="cordova-plugin-geolocation" source="npm" />
+    <gap:plugin name="cordova-plugin-splashscreen" source="npm" />
     <gap:plugin name="phonegap-googlemaps-plugin" source="npm">
         <param name="API_KEY_FOR_ANDROID" value="AIzaSyA80Z5HNXs6HOMxTxs4AP_ItMh7Vk0nFHw" />
         <param name="API_KEY_FOR_IOS" value="AIzaSyB2DVmke_xG9ckZJ69-hW4bK46AvCq91Zs" />
