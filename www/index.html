@@ -8,38 +8,34 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <script type="text/javascript" src="cordova.js"></script>
+    </head>
+    <body>
+        <div id="dummy"><img src="img/give-anywhere.png" width="100%"></div>
+        <div style="width:100%;height:400px" id="map_canvas"></div>
         <script type="text/javascript">
+            var me = {lat: 50.425, lng: 30.506};
             var map;
+
+            function onErrorGeo(error) {  
+                alert(error);
+            }
+            function onSucGeo(position) {
+                me.lat = position.coords.latitude;
+                me.lng = position.coords.longitude;
+                map.addMarker({
+                    'position': me,
+                    'title': "Me"
+                });
+                map.moveCamera({'target': me, 'zoom': 17});
+            }
+
             document.addEventListener("deviceready", function() {
                 var div = document.getElementById("map_canvas");
-
-                // Initialize the map view
-                map = plugin.google.maps.Map.getMap(div, {
-                    'camera': {
-                        'latLng': {
-                            lat: 50.470021,
-                            lng: 30.632001
-                        },
-                        'zoom': 17
-                    }
-                });
-
-                // Wait until the map is ready status.
+                map = plugin.google.maps.Map.getMap(div);
                 map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-                    //Nothing
-                    map.addMarker({
-                        'position': {
-                            lat: 50.470021,
-                            lng: 30.632001
-                        },
-                        'title': "Hello GoogleMap for Cordova!"
-                    });
+                    navigator.geolocation.getCurrentPosition(onSucGeo, onErrorGeo, {timeout: 10000, enableHighAccuracy: true });
                 });
             }, false);
         </script>
-    </head>
-    <body>
-        <div><img src="img/give-anywhere.png" width="100%"></div>
-        <div style="width:100%;height:400px" id="map_canvas"></div>
     </body>
 </html>
