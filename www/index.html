@@ -8,34 +8,103 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry"></script>
     </head>
     <body>
         <div id="dummy"><img src="img/give-anywhere.png" width="100%"></div>
+        <div class="row-fluid">
+            <select id="causes" class="selectpicker span1" multiple title="All Causes" data-selected-text-format="count>3">
+                <option value="charity">Charities</option>
+                <option value="school">Schools</option>
+                <option value="orphanage">Orphanages</option>
+                <option value="recycling">Recycling</option>
+                <option value="otherc">Everything Else</option>
+            </select>
+            <select id="items" class="selectpicker span1" multiple title="All Items" data-selected-text-format="count>3">
+                <option value="food">Food</option>
+                <option value="cloth">Clothing</option>
+                <option value="tech">Technology</option>
+                <option value="otheri">Everything Else</option>
+            </select>
+        </div>
         <div style="width:100%;height:400px" id="map_canvas"></div>
         <script type="text/javascript">
-            var me = {lat: 50.425, lng: 30.506};
+            var me;
             var map;
+            var marker;
+            var markers = [];
+            var lat;
+            var lon;
+
+            function getData()
+            {
+                var o = {};
+                var positions = [];
+                o.lat = lat; 
+                o.lon = lon;
+                o.causes = $( "#causes" ).val() || [];
+                o.items = $( "#items" ).val() || [];
+
+                //Quick AJAX call
+                $.getJSON("https://www.give-anywhere.xyz/service.php",o).done(function( data ) {
+                    //Remove markers from the page
+                    for (var m = 0; m < markers.length; m++) {
+                        markers[m].setMap(null);
+                    }
+
+                    //Then clean the references to them
+                    while(markers.length > 0)
+                    {
+                        markers.pop();
+                    }
+
+                    //Now create a new position and marker for each entry in the result
+                    $.each( data, function( i, point )
+                           {
+                        var pos = new google.maps.LatLng(point.lat,point.lon);
+                        positions.push(pos);
+                        marker = new google.maps.Marker({ position: pos, map: map, title: point.name, icon: 'img/'+point.type+'.png' });
+                        markers.push(marker);
+                        data[i].dis = (data[i].distance/1000).toFixed(1);
+                    });
+
+                    //  Create a new viewpoint bound
+                    var bounds = new google.maps.LatLngBounds ();
+                    //Show myself
+                    bounds.extend(me);
+                    //  Go through .the other markers...
+                    for (var i = 0; i < markers.length; i++) {
+                        //  And increase the bounds to take this point
+                        bounds.extend (positions[i]);
+                    }
+                    //  Fit these bounds to the map
+                    map.fitBounds (bounds);
+
+                });
+            }
 
             function onErrorGeo(error) {  
-                alert(error);
-            }
-            function onSucGeo(position) {
-                me.lat = position.coords.latitude;
-                me.lng = position.coords.longitude;
-                map.addMarker({
-                    'position': me,
-                    'title': "Me"
-                });
-                map.moveCamera({'target': me, 'zoom': 17});
+                alert("Could not fix position.");
             }
 
-            document.addEventListener("deviceready", function() {
-                var div = document.getElementById("map_canvas");
-                map = plugin.google.maps.Map.getMap(div);
-                map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-                    navigator.geolocation.getCurrentPosition(onSucGeo, onErrorGeo, {timeout: 10000, enableHighAccuracy: true });
-                });
-            }, false);
+            function onSucGeo(position) {
+                me = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                map.setCenter(me);
+                ///FIXME: i18n me.
+                marker = new google.maps.Marker({ position: me, map: map, title: 'Me' });
+                lat = position.coords.latitude;
+                lon = position.coords.longitude;
+            }
+
+            function main() {
+                var mapOptions = { zoom: 6, styles: [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}] };
+                map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+                navigator.geolocation.getCurrentPosition(onSucGeo, onErrorGeo, {timeout: 10000, enableHighAccuracy: true });
+                    getData();
+            }
+
+            document.addEventListener("deviceready", main, false);
         </script>
     </body>
 </html>
