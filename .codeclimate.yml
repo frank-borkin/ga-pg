@@ -10,7 +10,7 @@ ratings:
   - "www/js/index.js"
   - "www/css/index.css"
   - "www/index.html"
-exclude_paths: []
+exclude_paths:
   - "www/spec/**"
   - "www/css/bootstrap.min.css"
   - "www/css/bootstrap-select.min.css"
